@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c440c6f593ab4fafa4cd82c7f770f220" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="ProductShopModel.Country" Width="1.5" PointX="3" PointY="8.75" />
+        <EntityTypeShape EntityType="ProductShopModel.CountryProduct" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="ProductShopModel.Customer" Width="1.5" PointX="0.75" PointY="11.875" />
+        <EntityTypeShape EntityType="ProductShopModel.Employee" Width="1.5" PointX="0.75" PointY="25.125" />
+        <EntityTypeShape EntityType="ProductShopModel.Order" Width="1.5" PointX="3" PointY="14.125" />
+        <EntityTypeShape EntityType="ProductShopModel.Product" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="ProductShopModel.Provider" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ProductShopModel.Role" Width="1.5" PointX="1.5" PointY="22" />
+        <EntityTypeShape EntityType="ProductShopModel.Runtime" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="ProductShopModel.Supply" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="ProductShopModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.125" />
+        <EntityTypeShape EntityType="ProductShopModel.Unit" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ProductShopModel.User" Width="1.5" PointX="1.5" PointY="18.625" />
+        <EntityTypeShape EntityType="ProductShopModel.ProductsOrder" Width="1.5" PointX="5.25" PointY="7.5" />
+        <AssociationConnector Association="ProductShopModel.FK_CountryProduct_Country" />
+        <AssociationConnector Association="ProductShopModel.FK_CountryProduct_Product" />
+        <AssociationConnector Association="ProductShopModel.FK_Customer_User" />
+        <AssociationConnector Association="ProductShopModel.FK_Order_Customer" />
+        <AssociationConnector Association="ProductShopModel.FK_Employee_User" />
+        <AssociationConnector Association="ProductShopModel.FK_Order_Employee" />
+        <AssociationConnector Association="ProductShopModel.FK_Order_Runtime" />
+        <AssociationConnector Association="ProductShopModel.FK_ProductsOrder_Order" />
+        <AssociationConnector Association="ProductShopModel.FK_Product_Unit" />
+        <AssociationConnector Association="ProductShopModel.FK_ProductsOrder_Product" />
+        <AssociationConnector Association="ProductShopModel.FK_Supply_Product" />
+        <AssociationConnector Association="ProductShopModel.FK_Supply_Provider" />
+        <AssociationConnector Association="ProductShopModel.FK_User_Role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
