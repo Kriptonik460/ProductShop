@@ -1,4 +1,5 @@
-﻿using ProductShop.Resource;
+﻿using ProductShop.Properties;
+using ProductShop.Resource;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,10 +24,17 @@ namespace ProductShop
     /// </summary>
     public partial class MainWindow : Window
     {
+        int count = 0;
+        public const int CustomerRoleId = 3;
+        public const int EmployeeRoleId = 2;
+        public const int MaxAuth = 3;
+        public static readonly TimeSpan DateAuth = new TimeSpan(0,1,0);
         public MainWindow()
         {
             InitializeComponent();
             DbConnect.db.User.Load();
+
+
         }
 
         private void Registr(object sender, RoutedEventArgs e)
@@ -76,23 +84,33 @@ namespace ProductShop
 
         private void Avtor(object sender, RoutedEventArgs e)
         {
+            if (count >= MaxAuth)
+            {
+                MessageBox.Show("Пароль или логин введены неверны 3 раза", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            
             string login = LoginTb.Text.Trim();
             string password = PasswordTb.Password.Trim();
 
             User user = DbConnect.db.User.Local.FirstOrDefault(x => x.Login == login && x.Password == password);
             if (user == null)
-                MessageBox.Show("Такого пользователя нет", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-            
-            else
             {
-                if (user.RoleId == 2)
-                    new Employee().Show();
-                if (user.RoleId == 3)
-                    new Customer().Show();
-                Close();
+                MessageBox.Show("Такого пользователя нет", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                count++;
+                return;
             }
+            
+            if (user.RoleId == EmployeeRoleId)
+                new Employee().Show();
+
+            if (user.RoleId == CustomerRoleId)
+                new Customer().Show();
+            Close();
+            
         }
 
+        
         
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
