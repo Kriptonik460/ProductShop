@@ -1,4 +1,4 @@
-﻿<Window x:Class="ProductShop.MainWindow"
+﻿<Window x:Class="ProductShop.Registration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProductShop"
         mc:Ignorable="d"
         Icon="Source/logo.png"
-        Title="MainWindow" Height="515" Width="365" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Registration" Height="515" Width="365" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF232D3E" Offset="0"/>
@@ -87,9 +87,8 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <CheckBox Grid.Row="2" Background="White" Foreground="White" Content="Оставаться в системе" Margin="32,149.2,181.8,125.8" Height="25" />
 
-        <Button x:Name="Avtor" Foreground="White" Grid.Row="2" Height="50" FontSize="18" Background="#FF0074E0" HorizontalAlignment="Center" Margin="105,199.2,109.8,50.8" Width="150" BorderBrush="Black" OpacityMask="#FFF00000" Content="Авторизоваться" Click="Avtor_Click" >
+        <Button x:Name="Reg" Foreground="White" Grid.Row="2" Height="50" FontSize="18" Background="#FF0074E0" HorizontalAlignment="Center" Margin="0 70 0 0" Width="200" BorderBrush="Black"  Content="Зарегистрироваться" Click="Reg_Click" >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Template">
@@ -110,7 +109,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="Registr" Foreground="White" Grid.Row="3" FontSize="16" Background="Transparent" HorizontalAlignment="Center" Height="50" Width="200" BorderBrush="Black" OpacityMask="#FFF00000" Content="Создать учетную запись" Click="Registr_Click"   >
+        <Button x:Name="Return" Foreground="White" Grid.Row="3" FontSize="16" Background="Transparent" HorizontalAlignment="Center" Height="50" Width="300" BorderBrush="Black" OpacityMask="#FFF00000" Content="Вернуться на окно авторизации" Click="Return_Click"  >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Template">
@@ -158,6 +157,4 @@
 
 
     </Grid>
-
 </Window>
-
