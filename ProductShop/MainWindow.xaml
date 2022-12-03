@@ -5,22 +5,140 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="176.8" Width="400">
+        Icon="Source/logo.png"
+        Title="MainWindow" Height="515" Width="365" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF232D3E" Offset="0"/>
+            <GradientStop Color="#FF15171E" Offset="1"/>
+            <GradientStop Color="#FF15171E" Offset="0.479"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="117*"/>
-            <ColumnDefinition Width="277*"/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="151*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Name="ToolBar" MouseDown="ToolBar_MouseDown" Background="Transparent">
+
+            <Polygon Fill="White" Opacity="0.2" Points="107,0 115,7 , 249,7, 257,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Image Name="MinBut"  Height="13" Width="25" MouseDown="MinBut_MouseDown" >
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Source/Черта Не активный.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinBut}" Value="true">
+                                    <Setter Property="Source" Value="Source/Черта активный.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+
+                <Image Name="MinBut2"  Height="13" Width="25" MouseDown="MinBut2_MouseDown" >
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Source/Крест Не активный.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinBut2}" Value="true">
+                                    <Setter Property="Source" Value="Source/Крест  активный.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Name="logotype" Background="Transparent" MouseDown="logotype_MouseDown">
+            <Image Source="Source/logo.png" />
+        </Grid>
+        <TextBox x:Name="LoginTb" Foreground="White" Grid.Row="2" Height="30" FontSize="18" Width="300" VerticalAlignment="Top" Margin="0 30 0 0" HorizontalAlignment="Center"   Background="#FF2D3A4F"/>
+        <TextBlock IsHitTestVisible="False" FontSize="18" Text="Логин" Grid.Row="2" Height="30"  Width="300" VerticalAlignment="Top" Margin=" 15 30 0 0" HorizontalAlignment="Center" >
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=LoginTb}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <TextBox  x:Name="PasswordTb"  Foreground="White" Grid.Row="2" Height="30" FontSize="18" Width="300" VerticalAlignment="Top" Margin="0 100 0 0" HorizontalAlignment="Center"  Background="#FF2D3A4F"/>
+        <TextBlock IsHitTestVisible="False" FontSize="18" Text="Пароль" Grid.Row="2" Height="30"  Width="300" VerticalAlignment="Top" Margin="15 100 0 0" HorizontalAlignment="Center" >
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=PasswordTb}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <CheckBox Grid.Row="2" Background="White" Foreground="White" Content="Оставаться в системе" Margin="32,149.2,181.8,125.8" Height="25" />
+
+        <Button x:Name="Avtor" Foreground="White" Grid.Row="2" Height="50" FontSize="18" Background="#FF0074E0" HorizontalAlignment="Center" Margin="105,199.2,109.8,50.8" Width="150" BorderBrush="Black" OpacityMask="#FFF00000" Content="Авторизоваться" Click="Avtor_Click" >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="Borderpox" CornerRadius="5">
+                                    <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" TargetName="Borderpox" Value="#FF007ACC"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="Registr" Foreground="White" Grid.Row="3" FontSize="16" Background="Transparent" HorizontalAlignment="Center" Height="50" Width="200" BorderBrush="Black" OpacityMask="#FFF00000" Content="Создать учетную запись"  >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="Borderpox" CornerRadius="5">
+                                    <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" TargetName="Borderpox" Value="#FF007ACC"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
 
 
 
-        <Image Source="Resource/logo.png" Margin="0,0,276.6,0.6" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-        
-        <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+
+
+
+        <!--<Image Source="Resource/logo.png" Margin="0,0,276.6,0.6" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />-->
+        <!--<StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <StackPanel>
              <TextBlock HorizontalAlignment="Center">Введите Логин</TextBlock>
                 <TextBox Margin="10 5 10 5" GotFocus="TextBox_GotFocus" x:Name="LoginTb"> Введите логин</TextBox>
@@ -35,7 +153,7 @@
                 <Button   Content="Авторизоваться" Click="Avtor" Margin="10 0 0 10"/>
                 <Button  Content="Регистрация" Click="Registr"   Margin="70 0 0 10" />
             </StackPanel>
-        </StackPanel>
+        </StackPanel>-->
 
 
 

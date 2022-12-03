@@ -64,10 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Customer.xaml.cs">
+    <Compile Include="Custom\Customer.xaml.cs">
       <DependentUpon>Customer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Employee.xaml.cs">
+    <Compile Include="Empl\Employee.xaml.cs">
       <DependentUpon>Employee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resource\Country.cs">
@@ -128,11 +128,11 @@
     <Compile Include="Resource\User.cs">
       <DependentUpon>ProductShop.tt</DependentUpon>
     </Compile>
-    <Page Include="Customer.xaml">
+    <Page Include="Custom\Customer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Employee.xaml">
+    <Page Include="Empl\Employee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,6 +148,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Style\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -187,6 +191,11 @@
     <Resource Include="Resource\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Source\logo.png" />
+    <Resource Include="Source\Крест  активный.png" />
+    <Resource Include="Source\Крест Не активный.png" />
+    <Resource Include="Source\Черта активный.png" />
+    <Resource Include="Source\Черта Не активный.png" />
     <Content Include="Resource\ProductShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProductShop.Context.cs</LastGenOutput>
@@ -201,8 +210,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Style\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
