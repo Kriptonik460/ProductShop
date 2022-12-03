@@ -87,7 +87,7 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <CheckBox Grid.Row="2" Background="White" Foreground="White" Content="Оставаться в системе" Margin="32,149.2,181.8,125.8" Height="25" />
+        <CheckBox x:Name="Checker" Grid.Row="2" Background="White" Foreground="White" Content="Оставаться в системе" Margin="32,149.2,181.8,125.8" Height="25" />
 
         <Button x:Name="Avtor" Foreground="White" Grid.Row="2" Height="50" FontSize="18" Background="#FF0074E0" HorizontalAlignment="Center" Margin="105,199.2,109.8,50.8" Width="150" BorderBrush="Black" OpacityMask="#FFF00000" Content="Авторизоваться" Click="Avtor_Click" >
             <Button.Style>

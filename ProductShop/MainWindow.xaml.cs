@@ -33,6 +33,10 @@ namespace ProductShop
         {
             InitializeComponent();
             DbConnect.db.User.Load();
+            if (Properties.Settings.Default.Login != null)
+                LoginTb.Text = Properties.Settings.Default.Login;
+            if (Properties.Settings.Default.Password != null)
+                PasswordTb.Text = Properties.Settings.Default.Password;
 
 
         }
@@ -89,7 +93,19 @@ namespace ProductShop
                 count++;
                 return;
             }
+            if (Checker.IsChecked == true)
+            {
+                Properties.Settings.Default.Login = LoginTb.Text;
+                Properties.Settings.Default.Password = PasswordTb.Text;
+                Properties.Settings.Default.Save();
 
+            }
+            else
+            {
+                Properties.Settings.Default.Login = null;
+                Properties.Settings.Default.Password = null;
+                Properties.Settings.Default.Save();
+            }
             if (user.RoleId == EmployeeRoleId)
                 new Employee().Show();
 
@@ -103,5 +119,6 @@ namespace ProductShop
             new Registration().Show();
             Close();
         }
+        
     }
 }
