@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Icon="Source/logo.png"
         Title="MainWindow" Height="515" Width="365" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF232D3E" Offset="0"/>
-            <GradientStop Color="#FF15171E" Offset="1"/>
-            <GradientStop Color="#FF15171E" Offset="0.479"/>
-        </LinearGradientBrush>
-    </Window.Background>
+        <Window.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF232D3E" Offset="0"/>
+                <GradientStop Color="#FF15171E" Offset="1"/>
+                <GradientStop Color="#FF15171E" Offset="0.479"/>
+            </LinearGradientBrush>
+        </Window.Background>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -131,29 +131,6 @@
                 </Style>
             </Button.Style>
         </Button>
-
-
-
-
-
-
-        <!--<Image Source="Resource/logo.png" Margin="0,0,276.6,0.6" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />-->
-        <!--<StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
-            <StackPanel>
-             <TextBlock HorizontalAlignment="Center">Введите Логин</TextBlock>
-                <TextBox Margin="10 5 10 5" GotFocus="TextBox_GotFocus" x:Name="LoginTb"> Введите логин</TextBox>
-                
-            </StackPanel>
-            <StackPanel>
-             <TextBlock HorizontalAlignment="Center">Введите пароль</TextBlock>
-                <PasswordBox Margin="10 5 10 5" x:Name="PasswordTb" ></PasswordBox>
-                
-            </StackPanel>
-            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button   Content="Авторизоваться" Click="Avtor" Margin="10 0 0 10"/>
-                <Button  Content="Регистрация" Click="Registr"   Margin="70 0 0 10" />
-            </StackPanel>
-        </StackPanel>-->
 
 
 

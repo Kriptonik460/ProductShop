@@ -5,28 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductShop"
         mc:Ignorable="d"
-        Title="Employee" Height="450" Width="800">
+        Title="Employee" Height="1080" Width="1920" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"  WindowStyle="None"  Icon="/ProductShop;component/Source/logo.png" WindowState="Maximized">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF232D3E" Offset="0"/>
+            <GradientStop Color="#FF15171E" Offset="1"/>
+            <GradientStop Color="#FF15171E" Offset="0.479"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="39*"/>
-            <RowDefinition Height="172*"/>
-            <RowDefinition Height="209*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="114*"/>
-            <ColumnDefinition Width="679*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="190*"/>
+            <ColumnDefinition Width="1690*"/>
+
+
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="11*"/>
 
-        <Menu   Grid.Row="0" Margin="0,0,0.4,0.2" Grid.RowSpan="2"    >
-            <MenuItem Header="gfe">
-                <MenuItem >впыаув
-                    <MenuItem>gbevr</MenuItem>
-                </MenuItem>
+            <RowDefinition Height="93*"/>
+            <RowDefinition Height="24"/>
 
-                <MenuItem >впыаув</MenuItem>
-                <MenuItem >впыаув</MenuItem>
-            </MenuItem>
-        </Menu>
+        </Grid.RowDefinitions>
+
+        <Polygon Fill="White" Opacity="0.2" Points="107,0 115,7 , 249,7, 257,0" Grid.ColumnSpan="2" Margin="0,0,181.2,0.2"/>
+        <Grid Margin="10" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right" Name="ToolBar2" MouseDown="ToolBar_MouseDown" Background="Transparent">
+
+
+
+            <StackPanel  Grid.Column="3" Name="ToolBar1" Background="Transparent">
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image Name="MinBut"  Height="13" Width="25" MouseDown="MinBut_MouseDown" >
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Source/Черта Не активный.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinBut}" Value="true">
+                                        <Setter Property="Source" Value="/Source/Черта активный.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+
+                    <Image Name="MinBut2"  Height="13" Width="25" MouseDown="MinBut2_MouseDown"  >
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Source/Крест Не активный.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinBut2}" Value="true">
+                                        <Setter Property="Source" Value="/Source/Крест  активный.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Image Source="/Source/logo.png" Grid.Column="1" Margin="0.4,15,3.2,1.2" Grid.RowSpan="2"  />
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="0.4,109.8,0.2,0.4" >
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource Btn}">
+                    <Setter Property="Padding" Value="8"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button  x:Name="MainPag"  Content="Главная" Foreground="White"  FontSize="16" Click="MainPag_Click"   />
+            <Button x:Name="Product" Content="Продукты" Foreground="White"  FontSize="16" Click="Button_Click_1"/>
+            <Button   x:Name="Client" Content="Клиенты" Foreground="White"  FontSize="16"    />
+            <Button  x:Name="ClintPage" Content="Заказы клиентов" Foreground="White"  FontSize="16"      />
+            <Button  x:Name="Provider"  Content="Поставщики" Foreground="White"  FontSize="16"  />
+            <Button  x:Name="ProviderPage" Content="Заказы поставщикам" Foreground="White"  FontSize="16"    />
+            <Button   x:Name="PolzPage" Content="Учетная запись" Foreground="White"  FontSize="16"  />
+            <Button x:Name="ExitSystem" Grid.Row="9" Grid.Column="1"  Content="Выйти из системы" Foreground="White"  FontSize="16" Click="ExitSystem_Click"   />
+        </StackPanel>
+
+            <Frame NavigationUIVisibility="Hidden" Grid.Row="2" Grid.Column="2" Source="/Empl/MainPage.xaml" x:Name="Menu"/>
+        
+
+
+
 
     </Grid>
 </Window>
