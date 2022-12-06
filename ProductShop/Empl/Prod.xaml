@@ -6,6 +6,8 @@
       xmlns:local="clr-namespace:ProductShop.Empl"
        DataContext="{Binding RelativeSource={RelativeSource Self}}"
       mc:Ignorable="d" 
+      
+      xmlns:product ="clr-namespace:ProductShop.Resource"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Product">
     <Grid>
@@ -15,8 +17,8 @@
         </Grid.RowDefinitions>
         <StackPanel  Grid.Row="0" Orientation="Horizontal" >
             <Grid  >
-                
-                <TextBox x:Name="Search" Foreground="White" Grid.Row="0" Height="30" FontSize="18" Width="250" VerticalAlignment="Top"  HorizontalAlignment="Center"   Background="#FF2D3A4F"/>
+
+                <TextBox x:Name="Search" Foreground="White" Grid.Row="0" Height="30" FontSize="18" Width="250" VerticalAlignment="Top"  HorizontalAlignment="Center"   Background="#FF2D3A4F" TextChanged="Search_TextChanged"/>
                 <TextBlock IsHitTestVisible="False" FontSize="18" Text="Поиск" Margin="15 0 0 0" Grid.Row="0" Height="30"  Width="100" VerticalAlignment="Top"  HorizontalAlignment="Left" >
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -30,22 +32,20 @@
                     </TextBlock.Style>
                 </TextBlock>
             </Grid>
-            <StackPanel Orientation="Horizontal">
-
-
-                <ComboBox x:Name="SortComponent" Margin="10 0 0 0" Background="#FF2D3A4F" Height="30" Width="125"  SelectedIndex="0" VerticalAlignment="Top" Text="Отсортировать" >
-                    
-                    <ComboBoxItem>По возрастанию</ComboBoxItem>
-                    <ComboBoxItem>По убыванию</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
+            <StackPanel Orientation="Horizontal"/>
             <StackPanel>
 
                 <Button x:Name="CreateProd" Margin="10 0 0 0" Content="Создать запись" Foreground="White" Style="{StaticResource Btn}" Background="Transparent" FontSize="16" Click="CreateProd_Click"  />
 
-            </StackPanel><StackPanel>
+            </StackPanel>
+            <StackPanel>
 
                 <Button x:Name="DeleteProduct" Margin="10 0 0 0" Content="Пометить на удаление запись" Foreground="White" Style="{StaticResource Btn}" Background="Transparent" FontSize="16" />
+
+            </StackPanel>
+            <StackPanel>
+
+                <Button x:Name="SaveProduct" Margin="10 0 0 0" Content="Сохранить изменения" Foreground="White" Style="{StaticResource Btn}" Background="Transparent" FontSize="16" Click="SaveProduct_Click" />
 
             </StackPanel>
 
@@ -53,19 +53,49 @@
         </StackPanel>
 
         <Grid Grid.Row="1">
-            
-        <DataGrid AutoGenerateColumns="False"  x:Name="DataProduct" Background="Transparent" BorderBrush="Transparent" ItemsSource="{Binding Product}" Margin="0,0,0,-0.4" Grid.RowSpan="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="2*" Header="ID" Binding="{Binding Path=Id}"/>
-                <DataGridTextColumn Width="2*" Header="Фото" Binding="{Binding Path=Photo}"/>
-                <DataGridTextColumn Width="2*" Header="Наименование" Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn Width="2*" Header="Описание" Binding="{Binding StringFormat='{} {0}', Path=Description}"/>
-                <DataGridTextColumn Width="2*" Header="Стоимость" Binding="{Binding Path=Cost}"/>
-                <DataGridTextColumn Width="2*" Header="Дата добавления" Binding="{Binding StringFormat='{} {0}', Path=AdDate}"/>
-                <DataGridTextColumn Width="2*" Header="Ед. измерения" Binding="{Binding StringFormat='{} {0}', Path=Idunit}"/>
-                <DataGridTextColumn Width="2*" Header="Количество" Binding="{Binding StringFormat='{} {0}', Path=Count}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+
+            <DataGrid  Background="Transparent"  x:Name="DataProduct" RowHeaderWidth="0" HeadersVisibility="Column" BorderBrush="Black"  ItemsSource="{Binding Products}" CanUserAddRows="False" Margin="0,0,0,-0.4" Grid.RowSpan="2" AutoGenerateColumns="False" Foreground="Black" GridLinesVisibility="None">
+                <DataGrid.RowStyle>
+               
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="18"/>
+                    </Style>
+                    
+                </DataGrid.RowStyle>
+                
+                <DataGrid.Columns  >
+                    <DataGridTemplateColumn  Header="Страна" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type product:Product}">
+                                <ListBox  ItemsSource="{Binding CountryProduct}" Background="Transparent" Foreground="White">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type product:CountryProduct}">
+                                            <TextBlock  Text="{Binding Path=Country.Name}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Width="2*" Header="ID" Binding="{Binding Path=Id}"/>
+                    <DataGridTemplateColumn Header="Фото">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type product:Product}">
+                                <Image Source="{Binding Photo}" Width="100" Height="100"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn  Width="2*" Header="Наименование" Binding="{Binding Path=Name, Mode=TwoWay}"/>
+                    <DataGridTextColumn Width="2*" Header="Описание" Binding="{Binding StringFormat='{} {0}', Path=Description, Mode=TwoWay}"/>
+                    <DataGridTextColumn Width="2*" Header="Стоимость" Binding="{Binding Path=Cost, Mode=TwoWay}"/>
+                    <DataGridTextColumn Width="2*" Header="Дата добавления" Binding="{Binding StringFormat='{} {0}', Path=AdDate}"/>
+                    <DataGridTextColumn Width="2*" Header="Ед. измерения" Binding="{Binding StringFormat='{} {0}', Path=Idunit}"/>
+                    <DataGridTextColumn Width="2*" Header="Количество" Binding="{Binding StringFormat='{} {0}', Path=Count, Mode=TwoWay}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
+
     </Grid>
 </Page>

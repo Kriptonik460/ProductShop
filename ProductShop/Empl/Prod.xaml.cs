@@ -1,8 +1,10 @@
 ﻿using ProductShop.Resource;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace ProductShop.Empl
 {
@@ -11,7 +13,9 @@ namespace ProductShop.Empl
     /// </summary>
     public partial class Prod : Page
     {
-       
+
+       public ICollectionView Collection { get; set; }
+        
         public ObservableCollection<Product> Products
         {
             get { return (ObservableCollection<Product>)GetValue(ProductsProperty); }
@@ -28,6 +32,8 @@ namespace ProductShop.Empl
             InitializeComponent();
             DbConnect.db.Product.Load();
             Products = DbConnect.db.Product.Local;
+            Collection = CollectionViewSource.GetDefaultView(Products);
+
 
         }
 
@@ -35,7 +41,22 @@ namespace ProductShop.Empl
         
         private void CreateProd_Click(object sender, RoutedEventArgs e)
         {
-            new CreateProduct().Show();
+            new CreateProduct().ShowDialog();
+        }
+
+        private void SaveProduct_Click(object sender, RoutedEventArgs e)
+        {
+            DbConnect.db.SaveChanges();
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+            Collection.Filter = (arg) =>
+            {
+                Product prod = arg as Product;
+                return prod.Name.ToLower().Trim().StartsWith(Search.Text.ToLower().Trim()) || prod.Description.ToLower().Trim().StartsWith(Search.Text.ToLower().Trim());
+            };
         }
     }
 }

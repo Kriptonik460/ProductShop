@@ -8,7 +8,7 @@ namespace ProductShop.Resource
 {
    static class DbConnect
     {
-        public static ProductShopEntities db = new ProductShopEntities();
+        public static ProductShopEntities db { get; } = new ProductShopEntities();
     
 
         static DbConnect()
