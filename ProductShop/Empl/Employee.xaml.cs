@@ -50,5 +50,10 @@ namespace ProductShop
         {
 
         }
+
+        private void ClintPage_Click(object sender, RoutedEventArgs e) => Menu.Navigate(new ZakazClient());
+
+        private void Settings_Click(object sender, RoutedEventArgs e) => Menu.Navigate(new Setting());
+        
     }
 }

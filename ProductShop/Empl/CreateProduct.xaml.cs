@@ -47,6 +47,10 @@ namespace ProductShop.Empl
         private void SavenBtn(object sender, RoutedEventArgs e)
         {
             DbConnect.db.Product.Add(Product);
+            
+            
+            
+
             DbConnect.db.SaveChanges();
             
         }
@@ -87,6 +91,7 @@ namespace ProductShop.Empl
                 OnPropertyChanged();
             }
         }
-       
-     }
+
+        
+    }
 }

@@ -136,7 +136,7 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <ComboBox Grid.Row="2" Height="20" Margin="471,90.2,25,189.8" DisplayMemberPath="Name" ItemsSource="{Binding Source={x:Static BDProd:DbConnect.db},Path=Country.Local}"/>
+        <ComboBox x:Name="Country" Grid.Row="2" Height="20" Margin="471,90.2,25,189.8" DisplayMemberPath="Name" ItemsSource="{Binding Source={x:Static BDProd:DbConnect.db},Path=Country.Local}" />
         <ComboBox Grid.Row="2" Height="20" Margin="341,90.2,145,189.8" DisplayMemberPath="Name" ItemsSource="{Binding Source={x:Static BDProd:DbConnect.db},Path=Unit.Local}" SelectedItem="{Binding ElementName=CreateProductRoot, Path=Product.Unit, Mode=TwoWay}"/>
         <Image Grid.Row="2" Height="120" Width="120" Margin="433,130.2,47,49.8" Source="{Binding ElementName=CreateProductRoot, Path=Photo}"/>
         <Button  Grid.Row="2" Height="20" Margin="425,270.2,31,9.8" Content="Добавить изображение" Foreground="White" Background="Transparent" Click="ChangeImageClick"/>

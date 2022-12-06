@@ -18,6 +18,7 @@ namespace ProductShop.Resource
         public int IdProducts { get; set; }
         public int IdOrder { get; set; }
         public decimal Count { get; set; }
+        public Nullable<decimal> TotalCost { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

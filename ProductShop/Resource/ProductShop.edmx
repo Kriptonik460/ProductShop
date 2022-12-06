@@ -74,6 +74,7 @@
           <Property Name="IdProducts" Type="int" Nullable="false" />
           <Property Name="IdOrder" Type="int" Nullable="false" />
           <Property Name="Count" Type="decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="TotalCost" Type="money" />
         </EntityType>
         <EntityType Name="Provider">
           <Key>
@@ -307,7 +308,8 @@
     [ProductsOrder].[Id] AS [Id], 
     [ProductsOrder].[IdProducts] AS [IdProducts], 
     [ProductsOrder].[IdOrder] AS [IdOrder], 
-    [ProductsOrder].[Count] AS [Count]
+    [ProductsOrder].[Count] AS [Count], 
+    [ProductsOrder].[TotalCost] AS [TotalCost]
     FROM [dbo].[ProductsOrder] AS [ProductsOrder]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_CountryProduct_Country" Association="Self.FK_CountryProduct_Country">
@@ -564,7 +566,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" />
@@ -583,6 +585,7 @@
           <Property Name="IdProducts" Type="Int32" Nullable="false" />
           <Property Name="IdOrder" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Decimal" Nullable="false" Precision="6" Scale="0" />
+          <Property Name="TotalCost" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Order" Relationship="ProductShopModel.FK_ProductsOrder_Order" FromRole="ProductsOrder" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="ProductShopModel.FK_ProductsOrder_Product" FromRole="ProductsOrder" ToRole="Product" />
         </EntityType>
@@ -877,6 +880,7 @@
           <EntitySetMapping Name="ProductsOrder">
             <EntityTypeMapping TypeName="ProductShopModel.ProductsOrder">
               <MappingFragment StoreEntitySet="ProductsOrder">
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
                 <ScalarProperty Name="IdProducts" ColumnName="IdProducts" />
