@@ -73,8 +73,8 @@
     <Compile Include="Empl\Employee.xaml.cs">
       <DependentUpon>Employee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Empl\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Empl\MainPag.xaml.cs">
+      <DependentUpon>MainPag.xaml</DependentUpon>
     </Compile>
     <Compile Include="Empl\Prod.xaml.cs">
       <DependentUpon>Prod.xaml</DependentUpon>
@@ -158,7 +158,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Empl\MainPage.xaml">
+    <Page Include="Empl\MainPag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

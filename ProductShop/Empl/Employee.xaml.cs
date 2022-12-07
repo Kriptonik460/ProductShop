@@ -31,7 +31,7 @@ namespace ProductShop
         //{
         //    this.WindowState = WindowState.Minimized;
         //}
-        private void MainPag_Click(object sender, RoutedEventArgs e) => Menu.Navigate(new MainPage());
+        private void MainPag_Click(object sender, RoutedEventArgs e) => Menu.Navigate(new MainPag());
         
 
         private void Button_Click_1(object sender, RoutedEventArgs e) => Menu.Navigate(new Prod());

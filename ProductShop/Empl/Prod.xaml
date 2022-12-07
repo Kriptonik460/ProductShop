@@ -40,14 +40,15 @@
             </StackPanel>
             <StackPanel>
 
-                <Button x:Name="DeleteProduct" Margin="10 0 0 0" Content="Пометить на удаление запись" Foreground="White" Style="{StaticResource Btn}" Background="Transparent" FontSize="16" />
+                <Button x:Name="DeleteProduct" Margin="10 0 0 0" Content="Удалить запись" Foreground="White" Style="{StaticResource Btn}" Background="Transparent" FontSize="16" Click="DeleteProduct_Click" />
 
             </StackPanel>
             <StackPanel>
 
-                <Button x:Name="SaveProduct" Margin="10 0 0 0" Content="Сохранить изменения" Foreground="White" Style="{StaticResource Btn}" Background="Transparent" FontSize="16" Click="SaveProduct_Click" />
+                <Button x:Name="SaveProduct" Margin="10 0 0 0" Content="Сохранить изменения" Foreground="White" Style="{StaticResource Btn}" Background="Transparent" FontSize="16" Click="SaveProduct_Click"  />
 
             </StackPanel>
+            <StackPanel/>
 
 
         </StackPanel>
@@ -66,7 +67,7 @@
                 </DataGrid.RowStyle>
                 
                 <DataGrid.Columns  >
-                    <DataGridTextColumn Width="2*" Header="ID" Binding="{Binding Path=Id}"/>
+                    <DataGridTextColumn Width="30" Header="ID" Binding="{Binding Path=Id}"/>
                     <DataGridTemplateColumn  Header="Страна" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type product:Product}">
@@ -89,7 +90,7 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn  Width="2*" Header="Наименование" Binding="{Binding Path=Name, Mode=TwoWay}"/>
                     <DataGridTextColumn Width="2*" Header="Описание" Binding="{Binding StringFormat='{} {0}', Path=Description, Mode=TwoWay}"/>
-                    <DataGridTextColumn Width="2*" Header="Стоимость" Binding="{Binding Path=Cost, Mode=TwoWay}"/>
+                    <DataGridTextColumn  Header="Стоимость" Width="80" Binding="{Binding Path=Cost, Mode=TwoWay}"/>
                     <DataGridTextColumn Width="2*" Header="Дата добавления" Binding="{Binding StringFormat='{} {0}', Path=AdDate}"/>
                     <DataGridTextColumn Width="2*" Header="Ед. измерения" Binding="{Binding StringFormat='{} {0}', Path=Unit.Name}"/>
                     <DataGridTextColumn Width="2*" Header="Количество" Binding="{Binding StringFormat='{} {0}', Path=Count, Mode=TwoWay}"/>

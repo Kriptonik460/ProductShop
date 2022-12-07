@@ -1,7 +1,5 @@
-﻿using ProductShop.Resource;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +16,13 @@ using System.Windows.Shapes;
 namespace ProductShop.Empl
 {
     /// <summary>
-    /// Логика взаимодействия для ZakazClient.xaml
+    /// Логика взаимодействия для MainPag.xaml
     /// </summary>
-    public partial class ZakazClient : Page
+    public partial class MainPag : Page
     {
-        public ZakazClient()
+        public MainPag()
         {
             InitializeComponent();
-           DbConnect.db.Order.Load();
         }
     }
 }

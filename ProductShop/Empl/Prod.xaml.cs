@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -44,10 +45,7 @@ namespace ProductShop.Empl
             new CreateProduct().ShowDialog();
         }
 
-        private void SaveProduct_Click(object sender, RoutedEventArgs e)
-        {
-            DbConnect.db.SaveChanges();
-        }
+       
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -57,6 +55,18 @@ namespace ProductShop.Empl
                 Product prod = arg as Product;
                 return prod.Name.ToLower().Trim().StartsWith(Search.Text.ToLower().Trim()) || prod.Description.ToLower().Trim().StartsWith(Search.Text.ToLower().Trim());
             };
+        }
+
+        private void DeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Product product in DataProduct.SelectedItems.Cast<Product>().ToList())
+                Products.Remove(product);
+            DbConnect.db.SaveChanges();
+        }
+
+        private void SaveProduct_Click(object sender, RoutedEventArgs e)
+        {
+            DbConnect.db.SaveChanges();
         }
     }
 }

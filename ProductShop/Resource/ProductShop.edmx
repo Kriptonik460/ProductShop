@@ -46,13 +46,13 @@
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="IdCustomer" Type="int" Nullable="false" />
           <Property Name="IdRuntime" Type="int" Nullable="false" />
-          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Cost" Type="money" Nullable="false" />
           <Property Name="Description" Type="text" />
@@ -194,7 +194,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -485,7 +485,7 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdCustomer" Type="Int32" Nullable="false" />
           <Property Name="IdRuntime" Type="Int32" Nullable="false" />
-          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployee" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="ProductShopModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="Employee" Relationship="ProductShopModel.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
           <NavigationProperty Name="Runtime" Relationship="ProductShopModel.FK_Order_Runtime" FromRole="Order" ToRole="Runtime" />
@@ -650,7 +650,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Employee">
-          <End Type="ProductShopModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="ProductShopModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="ProductShopModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">

@@ -24,7 +24,7 @@ namespace ProductShop.Resource
         public System.DateTime Date { get; set; }
         public int IdCustomer { get; set; }
         public int IdRuntime { get; set; }
-        public int IdEmployee { get; set; }
+        public Nullable<int> IdEmployee { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }

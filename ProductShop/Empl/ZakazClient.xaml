@@ -5,17 +5,40 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProductShop.Empl"
        DataContext="{Binding RelativeSource={RelativeSource Self}}"
-      mc:Ignorable="d" 
+      xmlns:order ="clr-namespace:ProductShop.Resource"
+      mc:Ignorable="d"
       
-      xmlns:product ="clr-namespace:ProductShop.Resource"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ZakazClient">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="38*"/>
-            <RowDefinition Height="411*"/>
-        </Grid.RowDefinitions>
+       
+        
       
+            <ListView x:Name="ListZakaz" BorderBrush="Black" Grid.Row="1" Width="1000" HorizontalAlignment="Center" FontSize="20" Foreground="White" Background="Transparent" ItemsSource="{Binding Source={x:Static order:DbConnect.db}, Path=Order.Local}" Margin="0,0,0,0.4" >
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type order:Order }">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Grid.Column="0" x:Name="Date" Text="{Binding Date}"/>
+                        <TextBlock Grid.Column="1" x:Name="Customer" Text="{Binding Path=Customer.Name}"/>
+                        <TextBlock Grid.Column="2" x:Name="Runtime" Text="{Binding Path=Runtime.Name}"/>
+                        <TextBlock Grid.Column="3" x:Name="Employee">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                    <Binding Path="Employee.LastName"/>
+                                    <Binding Path="Employee.FirstName"/>
+                                    <Binding Path="Employee.Patronymic"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <Button Content="ДФЫВдфцдвдфцв"/>
+                        <Button Content="ДФЫВдфцдвдфцв"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            
+     
+        
     </Grid>
 </Page>
