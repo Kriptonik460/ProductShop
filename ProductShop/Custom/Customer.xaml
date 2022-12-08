@@ -13,7 +13,7 @@
             <GradientStop Color="#FF15171E" Offset="0.479"/>
         </LinearGradientBrush>
     </Window.Background>
-    <!--<Grid>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="190*"/>
@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
 
         <Polygon Fill="White" Opacity="0.2" Points="107,0 115,7 , 249,7, 257,0" Grid.ColumnSpan="2" Margin="0,0,181.2,0.2"/>
-        <Grid Margin="10" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right" Name="ToolBar2" MouseDown="ToolBar_MouseDown" Background="Transparent">
+        <Grid Margin="10" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right" Name="ToolBar2"  Background="Transparent">
 
 
 
@@ -52,7 +52,7 @@
                         </Image.Style>
                     </Image>
 
-                    <Image Name="MinBut2"  Height="13" Width="25" MouseDown="MinBut2_MouseDown"  >
+                    <Image Name="MinBut2"  Height="13" Width="25"   MouseDown="MinBut2_MouseDown" >
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Source/Крест Не активный.png"/>
@@ -77,17 +77,17 @@
                     <Setter Property="HorizontalContentAlignment" Value="Left"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="Product" Content="Продукты" Foreground="White"  FontSize="16" Click="Button_Click_1"/>
-            <Button  x:Name="ClintPage" Content="Сделать заказ" Foreground="White"  FontSize="16" Click="ClintPage_Click"      />
-            <Button   x:Name="PolzPage" Content="Учетная запись" Foreground="White"  FontSize="16"  />
+            <Button x:Name="Product" Content="Продукты" Foreground="White"  FontSize="16" Click="Product_Click" />
+            <Button  x:Name="Zakaz" Content="Сделать заказ" Foreground="White"  FontSize="16" Click="Zakaz_Click"      />
+            <Button  x:Name="ZakazClient" Content="Ваши заказы" Foreground="White"  FontSize="16" Click="ZakazClient_Click"       />
             <Button x:Name="ExitSystem" Grid.Row="9" Grid.Column="1"  Content="Выйти из системы" Foreground="White"  FontSize="16" Click="ExitSystem_Click"   />
         </StackPanel>
 
-        <Frame NavigationUIVisibility="Hidden" Grid.Row="2" Grid.Column="2" Source="/Empl/MainPage.xaml" x:Name="Menu"/>
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="2" Grid.Column="2" Source="/Empl/Prod.xaml" x:Name="Menu"/>
 
 
 
 
 
-    </Grid>-->
+    </Grid>
 </Window>

@@ -35,6 +35,12 @@ namespace ProductShop.Empl
             Products = DbConnect.db.Product.Local;
             Collection = CollectionViewSource.GetDefaultView(Products);
 
+            if ( MainWindow.UserCustomer.RoleId == 3)
+            {
+                CreateProd.Visibility = Visibility.Collapsed;
+                DeleteProduct.Visibility = Visibility.Collapsed;
+                SaveProduct.Visibility = Visibility.Collapsed;
+            }
 
         }
 

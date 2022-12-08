@@ -16,19 +16,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ProductShop
 {
+    class UserRoleId
+    {
+        public static int Id { get; set; }
+    }
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        int count = 0;
+        
+
         public const int CustomerRoleId = 3;
         public const int EmployeeRoleId = 2;
         public const int MaxAuth = 3;
+        int CountAuth;
         public static readonly TimeSpan DateAuth = new TimeSpan(0, 1, 0);
+        public static User UserCustomer;
+        DispatcherTimer Timer = new DispatcherTimer();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -40,7 +50,7 @@ namespace ProductShop
 
 
         }
-
+        #region функционал
         private void MinBut2_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
@@ -69,49 +79,85 @@ namespace ProductShop
             }
         }
 
-       
 
 
 
 
+        #endregion
 
         private void Avtor_Click(object sender, RoutedEventArgs e)
         {
-            if (count >= MaxAuth)
-            {
-                MessageBox.Show("Пароль или логин введены неверны 3 раза", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
 
-            string login = LoginTb.Text.Trim();
-            string password = PasswordTb.Text.Trim();
-
-            User user = DbConnect.db.User.Local.FirstOrDefault(x => x.Login == login && x.Password == password);
-            if (user == null)
+            if (CountAuth < 3)
             {
-                MessageBox.Show("Такого пользователя нет", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                count++;
-                return;
-            }
-            if (Checker.IsChecked == true)
-            {
-                Properties.Settings.Default.Login = LoginTb.Text;
-                Properties.Settings.Default.Password = PasswordTb.Text;
-                Properties.Settings.Default.Save();
+                if (LoginTb.Text != "" || PasswordTb.Text != "")
+                {
+                    var user = DbConnect.db.User.ToList().Find(x => x.Login == LoginTb.Text.Trim() && x.Password == PasswordTb.Text.Trim());
+                    if (user != null)
+                    {
+                        if (Checker.IsChecked == true)
+                        {
+                            Properties.Settings.Default.Login = LoginTb.Text.Trim();
+                            Properties.Settings.Default.Password = PasswordTb.Text.Trim();
+                            Properties.Settings.Default.Save();
+                        }
+                        else
+                        {
+                            Properties.Settings.Default.Login = "";
+                            Properties.Settings.Default.Password = "";
+                            Properties.Settings.Default.Save();
+                        }
+                        CountAuth = 0;
+                        
+                        if (user.RoleId == CustomerRoleId)
+                        {
+                            UserRoleId.Id = user.Id;
+                        new Customer().Show();
 
+                            Close();
+
+                        }
+                        if (user.RoleId == EmployeeRoleId)
+                        {
+                        new Employee().Show();
+                            Close();
+                        }
+                        UserCustomer = user;
+
+                    }
+                    else
+                    {
+                        CountAuth += 1;
+                        Properties.Settings.Default.CountAuth = CountAuth;
+                        MessageBox.Show("Такого пользователя нет", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не заполнены поля", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             else
             {
-                Properties.Settings.Default.Login = null;
-                Properties.Settings.Default.Password = null;
-                Properties.Settings.Default.Save();
+                MessageBox.Show("Вы ввели 3 раза неправильный пароль\nВход заблокировани на 1 минуту", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                CountAuth = 0;
+                Avtor.IsEnabled = false;
+                Registr.IsEnabled = false;
+                Timer.Interval = new TimeSpan(0, 1, 0);
+                Timer.Tick += new EventHandler(isVisibleBTN);
+                Timer.Start();
             }
-            if (user.RoleId == EmployeeRoleId)
-                new Employee().Show();
 
-            if (user.RoleId == CustomerRoleId)
-                new Customer().Show();
-            Close();
+
+
+
+
+        }
+        private void isVisibleBTN(object sender, EventArgs e)
+        {
+            Avtor.IsEnabled = true;
+            Registr.IsEnabled = true;
+            Timer.Stop();
         }
 
         private void Registr_Click(object sender, RoutedEventArgs e)

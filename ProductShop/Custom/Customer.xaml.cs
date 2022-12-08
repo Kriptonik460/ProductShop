@@ -24,9 +24,29 @@ namespace ProductShop
             InitializeComponent();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Product_Click(object sender, RoutedEventArgs e) => Menu.Navigate(new Empl.Prod());
+
+
+        private void Zakaz_Click(object sender, RoutedEventArgs e) => Menu.Navigate(new Custom.Zakaz());
+       
+
+        private void ExitSystem_Click(object sender, RoutedEventArgs e)
         {
 
+            new MainWindow().Show();
+            Close();
+            
         }
+        private void MinBut2_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MinBut_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+        private void ZakazClient_Click(object sender, RoutedEventArgs e) => Menu.Navigate(new Custom.CliennZakazId());
+        
     }
 }

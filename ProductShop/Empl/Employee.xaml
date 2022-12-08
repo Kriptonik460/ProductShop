@@ -81,7 +81,6 @@
             <Button x:Name="Product" Content="Продукты" Foreground="White"  FontSize="16" Click="Button_Click_1"/>
             <Button x:Name="ClintPage" Content="Заказы клиентов" Foreground="White"  FontSize="16" Click="ClintPage_Click"      />
             <Button x:Name="ProviderPage" Content="Заказы поставщикам" Foreground="White"  FontSize="16"    />
-            <Button x:Name="PolzPage" Content="Учетная запись" Foreground="White"  FontSize="16"  />
             <Button x:Name="Settings" Grid.Row="9" Grid.Column="1"  Content="Настройки" Foreground="White"  FontSize="16" Click="Settings_Click"   />
             <Button x:Name="ExitSystem" Grid.Row="9"   Content="Выйти из системы" Foreground="White"  FontSize="16" Click="ExitSystem_Click"   />
         </StackPanel>

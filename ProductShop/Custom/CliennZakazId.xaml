@@ -1,4 +1,4 @@
-﻿<Page x:Class="ProductShop.Empl.ZakazClient"
+﻿<Page x:Class="ProductShop.Custom.CliennZakazId"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,14 +6,13 @@
       xmlns:local="clr-namespace:ProductShop.Empl"
        DataContext="{Binding RelativeSource={RelativeSource Self}}"
       xmlns:order ="clr-namespace:ProductShop.Resource"
-      mc:Ignorable="d"
-      
+      mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ZakazClient">
+      Title="CliennZakazId">
 
     <Grid>
-       
-            <ListView x:Name="ListZakaz" BorderBrush="Black" Grid.Row="1"  HorizontalAlignment="Center" FontSize="20" Foreground="White" Background="Transparent" ItemsSource="{Binding Source={x:Static order:DbConnect.db}, Path=Order.Local}" Margin="0,0,0,0.4" >
+
+        <ListView x:Name="ListZakaz" BorderBrush="Black" Grid.Row="1"  HorizontalAlignment="Center" FontSize="20" Foreground="White" Background="Transparent" ItemsSource="{Binding Source={x:Static order:DbConnect.db}, Path=Order.Local}" Margin="0,0,0,0.4" >
             <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type order:Order }">
                     <Grid>
@@ -24,7 +23,7 @@
                             <ColumnDefinition Width="300"/>
                             <ColumnDefinition Width="150"/>
                         </Grid.ColumnDefinitions>
-                    
+
                         <TextBlock Grid.Column="0" x:Name="Date" Text="{Binding Date}"/>
                         <TextBlock Grid.Column="1" x:Name="Customer" Text="{Binding Path=Customer.Name}"/>
                         <TextBlock Grid.Column="2" x:Name="Runtime" Text="{Binding Path=Runtime.Name}"/>
@@ -43,8 +42,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-            
-     
-        
+
+
+
     </Grid>
 </Page>
