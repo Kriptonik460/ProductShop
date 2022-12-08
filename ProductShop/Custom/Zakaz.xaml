@@ -3,32 +3,49 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-       xmlns:local="clr-namespace:ProductShop.Empl"
+       xmlns:local="clr-namespace:ProductShop.Custom"
        xmlns:Zakaz="clr-namespace:ProductShop.Resource"
        DataContext="{Binding RelativeSource={RelativeSource Self}}"
      
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      PreviewKeyDown="Page_PreviewKeyDown"
       Title="Zakaz">
 
     <Grid>
-        <ListView x:Name="ListZakaz" BorderBrush="Black" Grid.Row="1"  HorizontalAlignment="Left"  FontSize="20" Foreground="White" Background="Transparent" ItemsSource="{Binding Source={x:Static Zakaz:DbConnect.db}, Path=Product.Local}" Margin="0,0,0,0.4" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="137*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource Btn}">
+                    <Setter Property="Padding" Value="8"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Text="Общая стоимость предварительного заказа: " FontSize="20" Foreground="White"/>
+            <TextBlock x:Name="CostZakaz" FontSize="20" Foreground="White" Width="100" Text="{Binding Summary}"/>
+            <Button HorizontalAlignment="Right" Foreground="White" Background="Transparent"  FontSize="20"> Сделать заказ</Button>
+        </StackPanel>
+        <ListView x:Name="ListZakaz" BorderBrush="Black"  HorizontalAlignment="Left"  FontSize="20" Foreground="White" Background="Transparent" ItemsSource="{Binding Products}" Margin="0,0,0,0.6" Grid.Row="2" >
             <ListView.ItemTemplate>
-                <DataTemplate DataType="{x:Type Zakaz:Product }">
+                <DataTemplate DataType="{x:Type local:ProductVM }">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="300"/>
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="300"/>
                             <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" x:Name="Name" Text="{Binding Name}"/>
-                        <TextBlock Grid.Column="1" x:Name="Description" Text="{Binding Path=Description}"/>
-                        <TextBlock Grid.Column="2" x:Name="Count" Text="{Binding Path=Count}"/>
-                        <TextBlock Grid.Column="3" x:Name="Cost" Text="{Binding Path=Cost}"/>
-                  
-                        
+                        <TextBlock Grid.Column="0" x:Name="Name"   Text="{Binding Name}"/>
+                        <TextBlock Grid.Column="1" x:Name="Description" Text="{Binding Description}"/>
+                        <TextBlock Grid.Column="2" x:Name="Count" Text="{Binding Count}"/>
+                        <TextBlock Grid.Column="3" x:Name="Cost" Text="{Binding Cost}"/>
+                        <CheckBox Grid.Column="4" x:Name="CheckVZakaz" IsChecked="{Binding IsSelected}"/>
+
+
 
                     </Grid>
                 </DataTemplate>
